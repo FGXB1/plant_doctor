@@ -4,6 +4,18 @@ void main() {
   runApp(const MyApp());
 }
 
+class StyledText extends StatelessWidget {
+  const StyledText({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      'Hello World',
+      style: TextStyle(color: Colors.green, fontSize: 28),
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -11,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Plant Doctor',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -28,10 +40,10 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Plant Doctor'),
     );
   }
 }
@@ -112,6 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const StyledText()
           ],
         ),
       ),
