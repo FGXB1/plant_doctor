@@ -1,13 +1,13 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:plant_doctor/live_connect.dart';
 import 'package:plant_doctor/main.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Homepage extends StatelessWidget {
   Homepage({super.key});
   var hour = DateTime.now().hour;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,9 @@ class Homepage extends StatelessWidget {
                   style: TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Text('~ Audrey Hepburn', style: TextStyle(fontSize: 20)),
               ],
             ),
@@ -39,11 +41,13 @@ class Homepage extends StatelessWidget {
                     Buttons(
                       cardText: 'Explore Plants',
                       icon: FontAwesomeIcons.magnifyingGlass,
+                      route: LiveConnectPage(),
                     ),
                     Padding(padding: EdgeInsets.all(8.0)),
                     Buttons(
                       cardText: 'Live Connect',
                       icon: FontAwesomeIcons.whatsapp,
+                      route: LiveConnectPage(),
                     ),
                   ],
                 ),
@@ -54,11 +58,13 @@ class Homepage extends StatelessWidget {
                     Buttons(
                       cardText: 'Common Problems',
                       icon: FontAwesomeIcons.plantWilt,
+                      route: LiveConnectPage(),
                     ),
                     Padding(padding: EdgeInsets.all(8.0)),
                     Buttons(
                       cardText: 'Calendar',
                       icon: FontAwesomeIcons.calendar,
+                      route: LiveConnectPage(),
                     ),
                   ],
                 ),
@@ -72,9 +78,10 @@ class Homepage extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
-  const Buttons({super.key, required this.cardText, required this.icon});
+  const Buttons({super.key, required this.cardText, required this.icon, required this.route});
   final String cardText;
   final IconData icon;
+  final Widget route;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +90,13 @@ class Buttons extends StatelessWidget {
       child: SizedBox(
         height: 80,
         child: FilledButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => route
+                )
+              );
+            },
             label: Text(cardText),
             icon: FaIcon(icon),
             style: FilledButton.styleFrom(
