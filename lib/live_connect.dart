@@ -4,6 +4,8 @@ import 'package:plant_doctor/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp/whatsapp.dart';
 
+final Uri _url = Uri.parse('https://wa.me/16693016557');
+
 class LiveConnectPage extends StatefulWidget {
   const LiveConnectPage({super.key});
 
@@ -14,27 +16,27 @@ class LiveConnectPage extends StatefulWidget {
 class _LiveConnectPageState extends State<LiveConnectPage> {
   WhatsApp whatsapp = WhatsApp();
 
-  final Uri launchUri = Uri(
-      scheme: 'https',
-      path: 'https://wa.me/16693016557', 
-    );
+  // final Uri launchUri = Uri(
+  //     scheme: 'https',
+  //     path: 'https://wa.me/16693016557', 
+  //   );
 
-  Future<void> _launchInBrowser(Uri url) async {
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw Exception('Could not launch $url');
-    }
-  }
+  // Future<void> _launchInBrowser(Uri url) async {
+  //   if (!await launchUrl(
+  //     url,
+  //     mode: LaunchMode.externalApplication,
+  //   )) {
+  //     throw Exception('Could not launch $url');
+  //   }
+  // }
 
-  Future<void> _createChat() async {
-    final Uri launchUri = Uri(
-      scheme: 'https',
-      path: 'https://wa.me/16693016557', 
-    );
-    await launchUrl(launchUri);
-  }
+  // Future<void> _createChat() async {
+  //   final Uri launchUri = Uri(
+  //     scheme: 'https',
+  //     path: 'https://wa.me/16693016557', 
+  //   );
+  //   await launchUrl(launchUri);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +69,12 @@ You chose the right lifeline!''',
             ),
             const SizedBox(height: 20),
             FilledButton.icon(
-              onPressed: () {
-                // _createChat();
-                // _launchInBrowser(launchUri);
-                launchUrl(launchUri);
-              },
+              onPressed: _launchUrl,
+              // () {
+              //   // _createChat();
+              //   // _launchInBrowser(launchUri);
+              //   launchUrl(launchUri);
+              // },
               icon: const FaIcon(FontAwesomeIcons.whatsapp),
               label: const Text("Chat on Whatsapp"),
             )
@@ -79,5 +82,12 @@ You chose the right lifeline!''',
         ),
       ),
     );
+  }
+}
+
+
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }
