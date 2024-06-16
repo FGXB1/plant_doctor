@@ -22,6 +22,8 @@ class _LiveConnectPageState extends State<LiveConnectPage> {
     _notesController.dispose();
     super.dispose();
   }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -29,64 +31,65 @@ class _LiveConnectPageState extends State<LiveConnectPage> {
         title: const Text('Live Connect'),
         backgroundColor: kColorScheme.primary,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                '''Need Expert’s Advice? 
-      You chose the right lifeline!''',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                '''Click the option below to chat with IGA about your queries. Feel free to send photos and videos to assist you.''',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20),
-              FilledButton.icon(
-                onPressed: _launchUrl,
-                icon: const FaIcon(FontAwesomeIcons.whatsapp),
-                label: const Text("Chat on Whatsapp"),
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: TextField(
-                  controller: _notesController,
-                  maxLines: 5,
-                  // scrollController: ScrollController(),
-                  decoration: InputDecoration(
-                    hintText: _notesController.text,
-                    border: const OutlineInputBorder(),
-                    label: const Text('Make notes of your queries and prescription received here:')
+      body: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    ''' Need Expert’s Advice? 
+You chose the right lifeline!''',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                    
                   ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Text("FAQ:-",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,),
+                  const SizedBox(height: 20),
+                  const Text(
+                    '''Click the option below to chat with IGA about your queries. Feel free to send photos and videos to assist you.''',
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-              
-              const FAQ(question:'Question Number 1', answer: 'Answer Number 1'),
-              const FAQ(question:'Question Number 2', answer: 'Answer Number 2'),
-              const FAQ(question:'Question Number 3', answer: 'Answer Number 3'),
-            ],
+                  const SizedBox(height: 20),
+                  FilledButton.icon(
+                    onPressed: _launchUrl,
+                    icon: const FaIcon(FontAwesomeIcons.whatsapp),
+                    label: const Text("Chat on Whatsapp"),
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextField(
+                      controller: _notesController,
+                      maxLines: 5,
+                      // scrollController: ScrollController(),
+                      decoration: InputDecoration(
+                        hintText: _notesController.text,
+                        border: const OutlineInputBorder(),
+                        label: const Text('Make notes of your queries and prescription received here:')
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text("FAQ:-",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,),
+                      ),
+                  
+                  const FAQ(question:'Question Number 1', answer: 'Answer Number 1'),
+                  const FAQ(question:'Question Number 2', answer: 'Answer Number 2'),
+                  const FAQ(question:'Question Number 3', answer: 'Answer Number 3'),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
     );
   }
 }
