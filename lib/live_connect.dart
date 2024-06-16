@@ -30,6 +30,18 @@ class _LiveConnectPageState extends State<LiveConnectPage> {
       appBar: AppBar(
         title: const Text('Live Connect'),
         backgroundColor: kColorScheme.primary,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              colors: [Color(0xffbbf76e), Color(0xff0b6809)],
+              stops: [0.07, 1],
+              center: Alignment.bottomCenter,
+              radius: 2.0,
+              focal: Alignment.bottomCenter,
+              focalRadius: 0.1
+            ),
+          ), 
+        ),
       ),
       body: SingleChildScrollView(
           padding: const EdgeInsets.all(20),

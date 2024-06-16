@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Plant Doctor',
       theme: ThemeData(
         colorScheme: kColorScheme,
-        useMaterial3: true,
+        useMaterial3: true
       ),
       home: Homepage(),
     );

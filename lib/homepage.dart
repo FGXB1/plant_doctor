@@ -14,7 +14,18 @@ class Homepage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(hour < 12 ? 'Good Morning' : 'Good Evening'),
-        backgroundColor: kColorScheme.primary,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              colors: [Color(0xffbbf76e), Color(0xff0b6809)],
+              stops: [0.07, 1],
+              center: Alignment.bottomCenter,
+              radius: 2.0,
+              focal: Alignment.bottomCenter,
+              focalRadius: 0.1
+            ),
+          ), 
+        ),
       ),
       body: const Padding(
         padding: EdgeInsets.all(15.0),
