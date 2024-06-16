@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   whatsapp: ^2.0.0
   url_launcher: ^6.3.0
+  add_2_calendar: ^3.0.1
 
 dev_dependencies:
   flutter_test:
