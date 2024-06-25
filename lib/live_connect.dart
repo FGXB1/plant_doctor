@@ -50,7 +50,7 @@ class _LiveConnectPageState extends State<LiveConnectPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text(
-                    ''' Need Expert’s Advice? 
+                    ''' Need an Expert’s Advice? 
 You chose the right lifeline!''',
                     style: TextStyle(
                       fontSize: 24,

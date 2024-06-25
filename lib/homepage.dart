@@ -1,8 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:plant_doctor/explore.dart';
 import 'package:plant_doctor/live_connect.dart';
-import 'package:plant_doctor/main.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Homepage extends StatelessWidget {
@@ -27,12 +28,12 @@ class Homepage extends StatelessWidget {
           ), 
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(15.0),
+      body:  Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Column(
+            const Column(
               children: [
                 Text(
                   'To plant a garden is to believe in tomorrow.',
@@ -53,18 +54,18 @@ class Homepage extends StatelessWidget {
                     Buttons(
                       cardText: 'Explore Plants',
                       icon: FontAwesomeIcons.magnifyingGlass,
-                      route: LiveConnectPage(),
+                      route: ExplorePage(),
                     ),
-                    Padding(padding: EdgeInsets.all(8.0)),
-                    Buttons(
+                    const Padding(padding: EdgeInsets.all(8.0)),
+                    const Buttons(
                       cardText: 'Live Connect',
                       icon: FontAwesomeIcons.whatsapp,
                       route: LiveConnectPage(),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
-                Row(
+                const SizedBox(height: 20),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Buttons(
