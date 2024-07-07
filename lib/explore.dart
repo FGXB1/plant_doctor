@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_doctor/plant_detail.dart';
+import 'package:provider/provider.dart';
 import './models/plant.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -14,13 +15,16 @@ class ExplorePage extends StatelessWidget {
     Plant(name: "Tulsi", img: "assets/images/iga06.png")
   ];
 
-  void _selectPlant(context) {
+  void _selectPlant(context, String plantName, String plantImg) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const PlantDetailPage()));
+        MaterialPageRoute(builder: (context) => PlantDetailPage(name: plantName, img: plantImg,)));
   }
 
   @override
   Widget build(BuildContext context) {
+    final plantProvider = Provider.of<PlantProvider>(context);
+    final providedList = plantProvider.plantList;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -44,7 +48,7 @@ class ExplorePage extends StatelessWidget {
               crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
           itemCount: _plantList.length,
           itemBuilder: (context, index) => GestureDetector( // to make it clickable
-            onTap: () => _selectPlant(context),
+            onTap: () => _selectPlant(context, providedList[index].name, providedList[index].img),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
@@ -61,7 +65,8 @@ class ExplorePage extends StatelessWidget {
                   Expanded(
                     flex: 4,
                     child: Image.asset(
-                      _plantList[index].img,
+                      // _plantList[index].img,
+                      providedList[index].img,
                       fit: BoxFit.cover,
                       width: double.infinity,
                     ),
@@ -74,7 +79,7 @@ class ExplorePage extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          _plantList[index].name,
+                          providedList[index].name,
                           textAlign: TextAlign.center,
                         ),
                       ),

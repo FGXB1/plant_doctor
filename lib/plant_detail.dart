@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:plant_doctor/models/plant.dart';
+import 'package:provider/provider.dart';
 
 class PlantDetailPage extends StatelessWidget {
-  const PlantDetailPage({super.key});
+  const PlantDetailPage({super.key, required this.name, required this.img});
+  final String name;
+  final String img;
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Plant Details'),
+        title: Text(name),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'models/plant.dart';
 import 'homepage.dart';
 
 void main() {
@@ -14,12 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Plant Doctor',
-      theme: ThemeData(
-        colorScheme: kColorScheme,
-        useMaterial3: true
+    return ChangeNotifierProvider(
+      create: (context) => PlantProvider(),
+      child: MaterialApp(
+        title: 'Plant Doctor',
+        theme: ThemeData(
+          colorScheme: kColorScheme,
+          useMaterial3: true
+        ),
+        home: Homepage(),
       ),
-      home: Homepage(),
     );
   }
+}
