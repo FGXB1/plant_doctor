@@ -19,7 +19,6 @@ technical attributes (rotation, water needed, etc etc)
 */
 
 class PlantDetailPage extends StatelessWidget {
-
   final List<Plant> plantList = [
     Plant(name: "Varigated Money Plant", img: "assets/images/iga01.png"),
     Plant(name: "Syngonium", img: "assets/images/iga02.png"),
@@ -31,54 +30,64 @@ class PlantDetailPage extends StatelessWidget {
     Plant(name: "Tulsi", img: "assets/images/iga06.png")
   ];
 
-  PlantDetailPage({super.key, required this.name, required this.img, /* required this.plantMap */});
+  PlantDetailPage({
+    super.key,
+    required this.name,
+    required this.img,
+    /* required this.plantMap */
+  });
   final String name;
   final String img;
   // final Set<Object> plantMap;
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(name),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: RadialGradient(
-                colors: [Color(0xffbbf76e), Color(0xff0b6809)],
-                stops: [0.07, 1],
-                center: Alignment.bottomCenter,
-                radius: 2.0,
-                focal: Alignment.bottomCenter,
-                focalRadius: 0.1
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(name),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: RadialGradient(
+                  colors: [Color(0xffbbf76e), Color(0xff0b6809)],
+                  stops: [0.07, 1],
+                  center: Alignment.bottomCenter,
+                  radius: 2.0,
+                  focal: Alignment.bottomCenter,
+                  focalRadius: 0.1),
             ),
           ),
         ),
-      ),
-      body: Column(
-        children: [
-          CarouselSlider.builder(
-            options: CarouselOptions(height:200),
-            itemCount: plantList.length,
-            itemBuilder: (context, index, realIndex) {
-              final image = plantList[index].img;
+        body: Column(
+          children: [
+            CarouselSlider.builder(
+              options: CarouselOptions(height: 200),
+              itemCount: plantList.length,
+              itemBuilder: (context, index, realIndex) {
+                final image = plantList[index].img;
 
-              return buildImage(image, index);
-            },
-          ),
-          
-          const Attribute(attributeName: "Paani do", attributeText: "10 days a week :-)"),
-        ],
-      )
-    );
+                return buildImage(image, index);
+              },
+            ),
+            ListView.builder(
+              itemCount: plantMap[]['plantAttributes'].length,
+              itemBuilder: (context, index){
+                return Attribute(
+                  attributeName: providedplantMap['plantAttributes'][index][0],
+                  attributeText: providedplantMap['plantAttributes'][index][1]);
+              }
+            ),
+            const Attribute(
+                attributeName: "Paani do", attributeText: "10 days a week :)")
+          ],
+        ));
   }
 }
 
 Widget buildImage(String urlImage, int index) => Container(
-  margin: const EdgeInsets.all(25),
-  child: Image.asset(urlImage),
-);
+      margin: const EdgeInsets.all(25),
+      child: Image.asset(urlImage),
+    );
 
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
@@ -90,10 +99,11 @@ class MyWidget extends StatelessWidget {
 }
 
 class Attribute extends StatelessWidget {
-  const Attribute({super.key, required this.attributeName, required this.attributeText});
+  const Attribute(
+      {super.key, required this.attributeName, required this.attributeText});
   final String attributeName;
   final String attributeText;
-  
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
