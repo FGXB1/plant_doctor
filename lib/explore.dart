@@ -4,18 +4,20 @@ import 'package:provider/provider.dart';
 import './models/plant.dart';
 
 class ExplorePage extends StatelessWidget {
-  ExplorePage({super.key});
+  const ExplorePage({super.key});
 
-  void _selectPlant(context, String plantName, String plantImg, Set<Object> plantMap) {
+  void _selectPlant(context, String plantName, String plantImg,
+  //  Map<dynamic, dynamic> plantMap
+   ) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => PlantDetailPage(name: plantName, img: plantImg, plantMap: plantMap,)));
+        MaterialPageRoute(builder: (context) => PlantDetailPage(name: plantName, img: plantImg,/* plantMap: plantMap,*/)));
   }
 
   @override
   Widget build(BuildContext context) {
     final plantProvider = Provider.of<PlantProvider>(context);
     final providedList = plantProvider.plantList;
-    final providedMap = plantProvider.plantMap;
+    // final plantMapList = plantProvider.plantMap;
 
     return Scaffold(
       appBar: AppBar(
@@ -40,7 +42,9 @@ class ExplorePage extends StatelessWidget {
               crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
           itemCount: providedList.length,
           itemBuilder: (context, index) => GestureDetector( // to make it clickable
-            onTap: () => _selectPlant(context, providedList[index].name, providedList[index].img, providedMap[index]),
+            onTap: () => _selectPlant(context, providedList[index].name, providedList[index].img,
+            //  plantMapList[index]
+             ),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),

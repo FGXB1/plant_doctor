@@ -26,21 +26,28 @@ class PlantProvider with ChangeNotifier {
     Plant(name: "Tulsi", img: "assets/images/iga06.png")
   ];
 
-  var plantMap = {
-    0:
+  // var plantMap = {
+  //   0:
+  //   {
+  //     'Jade Plant',
+  //     {"assets/images/iga05.png",/*path2, path3, ...*/ },
+  //     {
+  //       {"Water every week", FontAwesomeIcons.droplet},
+  //       {/*highlight2_name, highlight2_logo*/},
+  //       {/*highlight3_name, highlight3_logo*/}
+  //     },
+  //     {
+  //       {"Light", "Jade plants love light, and young plants especially should be exposed to bright, indirect sunlight in order to thrive."},
+  //       {/*attribute1_name2, attribute1_text*/},
+  //       {/*attribute1_name3, attribute1_text*/},
+  //     },
+  //   },
+  // };
+
+  final List<Map> plantMap = [
     {
-      'Jade Plant',
-      {"assets/images/iga05.png",/*path2, path3, ...*/ },
-      {
-        {"Water every week", FontAwesomeIcons.droplet},
-        {/*highlight2_name, highlight2_logo*/},
-        {/*highlight3_name, highlight3_logo*/}
-      },
-      {
-        {"Light", "Jade plants love light, and young plants especially should be exposed to bright, indirect sunlight in order to thrive."},
-        {/*attribute1_name2, attribute1_text*/},
-        {/*attribute1_name3, attribute1_text*/},
-      },
+      "plantName" : "Varigated Money Plant",
+      "plantImg" : "assets/images/iga01.png"
     },
-  };
+  ];
 }

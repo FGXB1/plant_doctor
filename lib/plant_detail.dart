@@ -1,11 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import './models/plant.dart';
 
 /* 
 
 main image slideshow
 main attributes of plant -- highlights
-technical attributes (rotation, water needed, etc etc)
+technical attributes (rotation, water needed, etc etc)  
 
 3 types of data BLOCKS
   1. defines type of information that is there
@@ -18,10 +19,22 @@ technical attributes (rotation, water needed, etc etc)
 */
 
 class PlantDetailPage extends StatelessWidget {
-  PlantDetailPage({super.key, required this.name, required this.img, required this.plantMap});
+
+  final List<Plant> plantList = [
+    Plant(name: "Varigated Money Plant", img: "assets/images/iga01.png"),
+    Plant(name: "Syngonium", img: "assets/images/iga02.png"),
+    Plant(name: "Ariala Plant", img: "assets/images/iga03.png"),
+    Plant(name: "Jade Plant", img: "assets/images/iga04.png"),
+    Plant(name: "Pothos", img: "assets/images/iga05.png"),
+    Plant(name: "Tulsi", img: "assets/images/iga06.png"),
+    Plant(name: "Tulsi", img: "assets/images/iga06.png"),
+    Plant(name: "Tulsi", img: "assets/images/iga06.png")
+  ];
+
+  PlantDetailPage({super.key, required this.name, required this.img, /* required this.plantMap */});
   final String name;
   final String img;
-  final Set<Set<Object>> plantMap;
+  // final Set<Object> plantMap;
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +60,15 @@ class PlantDetailPage extends StatelessWidget {
         children: [
           CarouselSlider.builder(
             options: CarouselOptions(height:200),
-            itemCount: 5, 
+            itemCount: plantList.length,
             itemBuilder: (context, index, realIndex) {
-              final image = img;
+              final image = plantList[index].img;
 
               return buildImage(image, index);
             },
-          )
+          ),
+          
+          const Attribute(attributeName: "Paani do", attributeText: "10 days a week :-)"),
         ],
       )
     );
@@ -71,5 +86,21 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
+  }
+}
+
+class Attribute extends StatelessWidget {
+  const Attribute({super.key, required this.attributeName, required this.attributeText});
+  final String attributeName;
+  final String attributeText;
+  
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionTile(
+      title: Text(attributeName),
+      children: <Widget>[
+        ListTile(title: Text(attributeText)),
+      ],
+    );
   }
 }
