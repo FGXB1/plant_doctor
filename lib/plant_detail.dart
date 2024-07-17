@@ -1,11 +1,27 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:plant_doctor/models/plant.dart';
-import 'package:provider/provider.dart';
+
+/* 
+
+main image slideshow
+main attributes of plant -- highlights
+technical attributes (rotation, water needed, etc etc)
+
+3 types of data BLOCKS
+  1. defines type of information that is there
+  2. doesn't restrict amount of information
+    - as many features of the plant that can be found
+
+  one feature can have a logo and a title
+  - a technical attribute could have a title, dropdown and text and maybe an image
+
+*/
 
 class PlantDetailPage extends StatelessWidget {
-  const PlantDetailPage({super.key, required this.name, required this.img});
+  PlantDetailPage({super.key, required this.name, required this.img, required this.plantMap});
   final String name;
   final String img;
+  final Set<Set<Object>> plantMap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +43,33 @@ class PlantDetailPage extends StatelessWidget {
           ),
         ),
       ),
-      body: const Center(
-        child: Card(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 225.0),
-            child: Text("damn bro's in the backrooms"),
-          ),
-        ),
-       ),
+      body: Column(
+        children: [
+          CarouselSlider.builder(
+            options: CarouselOptions(height:200),
+            itemCount: 5, 
+            itemBuilder: (context, index, realIndex) {
+              final image = img;
+
+              return buildImage(image, index);
+            },
+          )
+        ],
+      )
     );
+  }
+}
+
+Widget buildImage(String urlImage, int index) => Container(
+  margin: const EdgeInsets.all(25),
+  child: Image.asset(urlImage),
+);
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

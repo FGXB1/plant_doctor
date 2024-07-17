@@ -6,24 +6,16 @@ import './models/plant.dart';
 class ExplorePage extends StatelessWidget {
   ExplorePage({super.key});
 
-  final List<Plant> _plantList = [
-    Plant(name: "Varigated Money Plant", img: "assets/images/iga01.png"),
-    Plant(name: "Syngonium", img: "assets/images/iga02.png"),
-    Plant(name: "Ariala Plant", img: "assets/images/iga03.png"),
-    Plant(name: "Jade Plant", img: "assets/images/iga04.png"),
-    Plant(name: "Pothos", img: "assets/images/iga05.png"),
-    Plant(name: "Tulsi", img: "assets/images/iga06.png")
-  ];
-
-  void _selectPlant(context, String plantName, String plantImg) {
+  void _selectPlant(context, String plantName, String plantImg, Set<Object> plantMap) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => PlantDetailPage(name: plantName, img: plantImg,)));
+        MaterialPageRoute(builder: (context) => PlantDetailPage(name: plantName, img: plantImg, plantMap: plantMap,)));
   }
 
   @override
   Widget build(BuildContext context) {
     final plantProvider = Provider.of<PlantProvider>(context);
     final providedList = plantProvider.plantList;
+    final providedMap = plantProvider.plantMap;
 
     return Scaffold(
       appBar: AppBar(
@@ -46,9 +38,9 @@ class ExplorePage extends StatelessWidget {
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
-          itemCount: _plantList.length,
+          itemCount: providedList.length,
           itemBuilder: (context, index) => GestureDetector( // to make it clickable
-            onTap: () => _selectPlant(context, providedList[index].name, providedList[index].img),
+            onTap: () => _selectPlant(context, providedList[index].name, providedList[index].img, providedMap[index]),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
