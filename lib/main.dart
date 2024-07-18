@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           colorScheme: kColorScheme,
           useMaterial3: true
         ),
-        home: Homepage(),
+        home: Homepage()
       ),
     );
   }

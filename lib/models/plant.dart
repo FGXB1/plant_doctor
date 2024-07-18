@@ -53,7 +53,9 @@ class PlantProvider with ChangeNotifier {
       "plantHighlights": [
         ["Easy Care", FontAwesomeIcons.seedling],
         ["Water 2-7 Days", FontAwesomeIcons.droplet],
-        ["Part Sunlight", FontAwesomeIcons.sun]
+        ["Part Sunlight", FontAwesomeIcons.sun],
+        ["Testing", FontAwesomeIcons.code],
+        ["More Testing", FontAwesomeIcons.codePullRequest],
       ],
       "plantAttributes": [
         ["Soil","Plant in rich, well-draining soil. A hight-quality potting mix that is peat-based or coir-based is best"],
