@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class Homepage extends StatelessWidget {
   Homepage({super.key});
   var hour = DateTime.now().hour;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +29,12 @@ class Homepage extends StatelessWidget {
           ), 
         ),
       ),
-      body:  Padding(
-        padding: const EdgeInsets.all(20.0),
+      body: const Padding(
+        padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Column(
+             Column(
               children: [
                 Text(
                   'To plant a garden is to believe in tomorrow.',
@@ -56,16 +57,16 @@ class Homepage extends StatelessWidget {
                       icon: FontAwesomeIcons.magnifyingGlass,
                       route: ExplorePage(),
                     ),
-                    const Padding(padding: EdgeInsets.all(8.0)),
-                    const Buttons(
+                    Padding(padding: EdgeInsets.all(8.0)),
+                    Buttons(
                       cardText: 'Live Connect',
                       icon: FontAwesomeIcons.whatsapp,
                       route: LiveConnectPage(),
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                const Row(
+                SizedBox(height: 20),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Buttons(
