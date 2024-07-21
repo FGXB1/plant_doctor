@@ -7,8 +7,11 @@ void main() {
   runApp(const MyApp());
 }
 
-var kColorScheme = ColorScheme.fromSeed(seedColor: const Color(0xFF6EA71F)).copyWith(
-  primary: const Color(0xFF6EA71F)
+var kColorScheme =
+    ColorScheme.fromSeed(seedColor: const Color(0xFF6EA71F)).copyWith(
+  primary: const Color(0xFF6EA71F),
+  onPrimaryFixedVariant: const Color(0xFF557A23),
+  inversePrimary: const Color(0xFFC1E096),
 );
 
 class MyApp extends StatelessWidget {
@@ -19,13 +22,9 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => PlantProvider(),
       child: MaterialApp(
-        title: 'Plant Doctor',
-        theme: ThemeData(
-          colorScheme: kColorScheme,
-          useMaterial3: true
-        ),
-        home: Homepage()
-      ),
+          title: 'Plant Doctor',
+          theme: ThemeData(colorScheme: kColorScheme, useMaterial3: true),
+          home: Homepage()),
     );
   }
 }
