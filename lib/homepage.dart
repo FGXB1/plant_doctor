@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:plant_doctor/explore.dart';
+import 'package:plant_doctor/explore_plants/explore.dart';
 import 'package:plant_doctor/live_connect.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

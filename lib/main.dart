@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'models/plant.dart';
+import 'explore_plants/models/plant.dart';
 import 'homepage.dart';
 
 void main() {

@@ -23,11 +23,7 @@ technical attributes (rotation, water needed, etc etc)
 class PlantDetailPage extends StatefulWidget {
   const PlantDetailPage(
       {super.key,
-      required this.name,
-      required this.img,
       required this.plantMap});
-  final String name;
-  final String img;
   final Map<dynamic, dynamic> plantMap;
 
   @override
@@ -42,7 +38,7 @@ class _PlantDetailPageState extends State<PlantDetailPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.name),
+        title: Text(widget.plantMap["plantName"]),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(

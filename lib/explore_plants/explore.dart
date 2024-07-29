@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:plant_doctor/plant_detail.dart';
+import 'package:plant_doctor/explore_plants/plant_detail.dart';
 import 'package:provider/provider.dart';
-import './models/plant.dart';
+import 'models/plant.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
 
-  void _selectPlant(context, String plantName, String plantImg,
-   Map<dynamic, dynamic> plantMap
-   ) {
+  void _selectPlant(context, Map<dynamic, dynamic> plantMap) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => PlantDetailPage(name: plantName, img: plantImg, plantMap: plantMap,)));
+        MaterialPageRoute(builder: (context) => PlantDetailPage(plantMap: plantMap,)));
   }
 
   @override
   Widget build(BuildContext context) {
     final plantProvider = Provider.of<PlantProvider>(context);
-    final providedList = plantProvider.plantList;
     final plantMapList = plantProvider.plantMap;
 
     return Scaffold(
@@ -42,7 +39,7 @@ class ExplorePage extends StatelessWidget {
               crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
           itemCount: plantMapList.length,
           itemBuilder: (context, index) => GestureDetector( // to make it clickable
-            onTap: () => _selectPlant(context, providedList[index].name, providedList[index].img, plantMapList[index]),
+            onTap: () => _selectPlant(context, plantMapList[index]),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
@@ -60,7 +57,7 @@ class ExplorePage extends StatelessWidget {
                     flex: 4,
                     child: Image.asset(
                       // _plantList[index].img,
-                      providedList[index].img,
+                      plantMapList[index]["plantImg"][0],
                       fit: BoxFit.cover,
                       width: double.infinity,
                     ),
@@ -73,7 +70,7 @@ class ExplorePage extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          providedList[index].name,
+                          plantMapList[index]["plantName"],
                           textAlign: TextAlign.center,
                         ),
                       ),
