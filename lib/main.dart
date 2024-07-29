@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_doctor/common_problems/models/problem.dart';
 import 'package:provider/provider.dart';
 import 'explore_plants/models/plant.dart';
 import 'homepage.dart';
@@ -19,8 +20,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => PlantProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<PlantProvider>(create: (context) => PlantProvider(),),
+        ChangeNotifierProvider<ProblemProvider>(create: (context) => ProblemProvider(),),
+      ],
       child: MaterialApp(
           title: 'Plant Doctor',
           theme: ThemeData(colorScheme: kColorScheme, useMaterial3: true),

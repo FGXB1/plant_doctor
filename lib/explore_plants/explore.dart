@@ -5,12 +5,6 @@ import 'models/plant.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
-
-  void _selectPlant(context, Map<dynamic, dynamic> plantMap) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => PlantDetailPage(plantMap: plantMap,)));
-  }
-
   @override
   Widget build(BuildContext context) {
     final plantProvider = Provider.of<PlantProvider>(context);
@@ -78,58 +72,6 @@ class ExplorePage extends StatelessWidget {
                   ),
                 ],
               ),
-            
-              // mine - problem was text took up too little space and image didn't get clipped right
-              // child: Stack(
-              //   alignment: AlignmentDirectional.bottomCenter,
-              //   children: [
-              //     Image.asset(_plantList[index].img,),
-              //     Container(
-              //       width: double.infinity,
-              //       color: Colors.white,
-              //       child: Text(_plantList[index].name, textAlign: TextAlign.center,)
-              //     ),
-              //   ],
-              //   )
-    
-              // chat gpt produced this -- worked perfectly
-    
-              // chat gpt produced this one -- picture wasn't clipping right
-              // Stack(
-              //   alignment: AlignmentDirectional.bottomCenter,
-              //   children: [
-              //     Image.asset(_plantList[index].img),
-              //     Container(
-              //       width: double.infinity,
-              //       color: Colors.white,
-              //       height: 40, // Set the height as needed
-              //       child: FittedBox(
-              //         fit: BoxFit.scaleDown,
-              //         child: Text(
-              //           _plantList[index].name,
-              //           textAlign: TextAlign.center,
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-    
-              // mine- problem was that text took up unnecessary space
-              // Column(
-              //   children: [
-              //     Stack(
-              //       alignment: AlignmentDirectional.bottomCenter,
-              //       children: [
-              //         Image.asset(_plantList[index].img),
-              //             Container(
-              //               width: double.infinity,
-              //               color: Colors.white,
-              //               child: Text(_plantList[index].name, textAlign: TextAlign.center)
-              //             ),
-              //       ],
-              //     )
-              //   ],
-              // ),
           ),
           ),
         ),
@@ -137,3 +79,8 @@ class ExplorePage extends StatelessWidget {
     );
   }
 }
+
+void _selectPlant(context, Map<dynamic, dynamic> plantMap) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => PlantDetailPage(plantMap: plantMap,)));
+  }

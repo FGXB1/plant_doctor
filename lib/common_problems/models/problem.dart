@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Problem {
+class ProblemProvider with ChangeNotifier {
+
   final List<Map> problemMap = [
     {
       "problemName": "ESHAAAANN",
-      "plantImg": "assets/images/iga01.png",
-      "plantSymptoms": [
+      "problemImg": "assets/images/iga01.png",
+      "problemSymptoms": [
         "Tilting",
         "Yellow",
       ],
-      "plantTreatment": [
+      "problemTreatment": [
         ["Treatment1 Name","Treatment1 description"],
         ["Treatment2 Name","Treatment2 description"],
         ["Treatment3 Name","Treatment3 description"]
@@ -17,17 +18,16 @@ class Problem {
     },
     {
     "problemName": "AMAAR",
-    "plantImg": "assets/images/iga02.png",
-    "plantSymptoms": [
+    "problemImg": "assets/images/iga02.png",
+    "problemSymptoms": [
       "Holes in leaves",
       "Yellow",
     ],
-    "plantTreatment": [
+    "problemTreatment": [
       ["Treatment1 Name","Treatment1 description"],
       ["Treatment2 Name","Treatment2 description"],
       ["Treatment3 Name","Treatment3 description"]
     ]
   }
   ];
-
 }

@@ -1,35 +1,28 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:plant_doctor/main.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 /*
-main image slideshow
-main attributes of plant -- highlights
-technical attributes (rotation, water needed, etc etc)
+main image
+symptoms of problem
+treatment
 
 3 types of data BLOCKS
   1. defines type of information that is there
   2. doesn't restrict amount of information
     - as many features of the plant that can be found
-
-  one feature can have a logo and a title
-  - a technical attribute could have a title, dropdown and text and maybe an image
-
 */
 
-class PlantDetailPage extends StatefulWidget {
-  const PlantDetailPage(
+class ProblemDetailPage extends StatefulWidget {
+  const ProblemDetailPage(
       {super.key,
-      required this.plantMap});
-  final Map<dynamic, dynamic> plantMap;
+      required this.problemMap});
+  final Map<dynamic, dynamic> problemMap;
 
   @override
-  State<PlantDetailPage> createState() => _PlantDetailPageState();
+  State<ProblemDetailPage> createState() => _ProblemDetailPageState();
 }
 
-class _PlantDetailPageState extends State<PlantDetailPage> {
+class _ProblemDetailPageState extends State<ProblemDetailPage> {
   int activeIndex = 0;
 
   @override
@@ -37,7 +30,7 @@ class _PlantDetailPageState extends State<PlantDetailPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.plantMap["plantName"]),
+        title: Text(widget.problemMap["problemName"]),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(
@@ -54,43 +47,13 @@ class _PlantDetailPageState extends State<PlantDetailPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
-            CarouselSlider.builder(
-              options: CarouselOptions(
-                height: 200,
-                autoPlay: true,
-                autoPlayCurve: Curves.fastOutSlowIn, // animation
-                // for dots below
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    activeIndex = index;
-                  });
-                },
-              ),
-              itemCount: widget.plantMap['plantImg'].length,
-              itemBuilder: (context, index, realIndex) {
-                // idk what realIndex is either
-                final image = widget.plantMap['plantImg'][index];
-
-                return buildImage(image, index);
-              },
-            ),
-            // scrolling dots -- separate package
-            AnimatedSmoothIndicator(
-              activeIndex: activeIndex,
-              count: widget.plantMap['plantImg'].length,
-              effect: const ScaleEffect(
-                // animation
-                activeDotColor: Colors.green,
-                dotWidth: 10,
-                dotHeight: 10,
-              ),
-            ),
+            Image.asset(widget.problemMap['problemImg']),
             const SizedBox(height: 15),
             const Align(
               // for some reason all the text is centered so used this
               alignment: Alignment.centerLeft,
               child: Text(
-                "Key Features",
+                "Symptoms",
                 style: TextStyle(
                   fontSize: 30.0,
                 ),
@@ -107,10 +70,10 @@ class _PlantDetailPageState extends State<PlantDetailPage> {
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0,
               ),
-              itemCount: widget.plantMap['plantHighlights'].length,
-              itemBuilder: (context, index) => Highlight(
-                highlightText: widget.plantMap['plantHighlights'][index][0],
-                highlightIcon: widget.plantMap['plantHighlights'][index][1],
+              itemCount: widget.problemMap['problemSymptoms'].length,
+              itemBuilder: (context, index) => Symptom(
+                highlightText: widget.problemMap['problemSymptoms'][index]//[0],
+                //highlightIcon: widget.problemMap['problemSymptoms'][index][1],
               ),
             ),
             const Align(
@@ -127,10 +90,10 @@ class _PlantDetailPageState extends State<PlantDetailPage> {
               controller: ScrollController(keepScrollOffset: false),
               separatorBuilder: (context, index) => const SizedBox(height: 20),
               shrinkWrap: true, // same as GridView
-              itemCount: widget.plantMap['plantAttributes'].length,
-              itemBuilder: (context, index) => Attribute(
-                attributeName: widget.plantMap['plantAttributes'][index][0],
-                attributeText: widget.plantMap['plantAttributes'][index][1],
+              itemCount: widget.problemMap['problemTreatment'].length,
+              itemBuilder: (context, index) => Treatment(
+                treatmentName: widget.problemMap['problemTreatment'][index][0],
+                treatmentText: widget.problemMap['problemTreatment'][index][1],
               ),
             ),
           ],
@@ -140,16 +103,10 @@ class _PlantDetailPageState extends State<PlantDetailPage> {
   }
 }
 
-Widget buildImage(String urlImage, int index) => Container(
-      margin: const EdgeInsets.all(25),
-      child: Image.asset(urlImage),
-    );
-
-class Highlight extends StatelessWidget {
-  const Highlight(
-      {super.key, required this.highlightText, required this.highlightIcon});
+class Symptom extends StatelessWidget {
+  const Symptom(
+      {super.key, required this.highlightText});
   final String highlightText;
-  final IconData highlightIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -162,11 +119,6 @@ class Highlight extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
-            FaIcon(
-              highlightIcon,
-              color: Colors.white,
-            ),
-            const Spacer(), // just dynamically adds space
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
@@ -182,11 +134,11 @@ class Highlight extends StatelessWidget {
   }
 }
 
-class Attribute extends StatelessWidget {
-  const Attribute(
-      {super.key, required this.attributeName, required this.attributeText});
-  final String attributeName;
-  final String attributeText;
+class Treatment extends StatelessWidget {
+  const Treatment(
+      {super.key, required this.treatmentName, required this.treatmentText});
+  final String treatmentName;
+  final String treatmentText;
 
   @override
   Widget build(BuildContext context) {
@@ -210,7 +162,7 @@ class Attribute extends StatelessWidget {
             reverseDuration: Durations.short4,
           ),
           title: Text(
-            attributeName,
+            treatmentName,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           children: <Widget>[
@@ -218,7 +170,7 @@ class Attribute extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 10.0),
               child: ListTile(
                 title: Text(
-                  attributeText,
+                  treatmentText,
                   style: const TextStyle(color: Colors.white),
                 ),
               ),

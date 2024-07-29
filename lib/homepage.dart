@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:plant_doctor/common_problems/problem_page.dart';
 import 'package:plant_doctor/explore_plants/explore.dart';
 import 'package:plant_doctor/live_connect.dart';
 
@@ -72,7 +73,7 @@ class Homepage extends StatelessWidget {
                     Buttons(
                       cardText: 'Common Problems',
                       icon: FontAwesomeIcons.plantWilt,
-                      route: LiveConnectPage(),
+                      route: ProblemPage(),
                     ),
                     Padding(padding: EdgeInsets.all(8.0)),
                     Buttons(
