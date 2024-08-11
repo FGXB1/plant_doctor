@@ -47,7 +47,11 @@ class _ProblemDetailPageState extends State<ProblemDetailPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
-            Image.asset(widget.problemMap['problemImg']),
+            const SizedBox(height: 30.0,),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: Image.asset(widget.problemMap['problemImg'])
+            ),
             const SizedBox(height: 15),
             const Align(
               // for some reason all the text is centered so used this
@@ -66,6 +70,7 @@ class _ProblemDetailPageState extends State<ProblemDetailPage> {
               shrinkWrap:
                   true, // so that it doesn't take up infinite space (overflow error without this)
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 2.0,
                 crossAxisCount: 3, // max of 3 in one line
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0,
@@ -79,7 +84,7 @@ class _ProblemDetailPageState extends State<ProblemDetailPage> {
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Description",
+                "Treatment",
                 style: TextStyle(
                   fontSize: 30.0,
                 ),
@@ -118,7 +123,6 @@ class Symptom extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
@@ -126,7 +130,6 @@ class Symptom extends StatelessWidget {
                 style: const TextStyle(color: Colors.white),
               ),
             ),
-            const Spacer() // more dynamic space
           ],
         ),
       ),

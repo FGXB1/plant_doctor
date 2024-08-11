@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:plant_doctor/main.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:whatsapp/whatsapp.dart';
+
+// import 'package:whatsapp/whatsapp.dart';
 
 final Uri _url = Uri.parse('https://wa.me/16693016557');
 
@@ -14,7 +14,7 @@ class LiveConnectPage extends StatefulWidget {
 }
 
 class _LiveConnectPageState extends State<LiveConnectPage> {
-  WhatsApp whatsapp = WhatsApp();
+  // WhatsApp whatsapp = WhatsApp();  
   final _notesController = TextEditingController();
   
   @override
@@ -69,11 +69,11 @@ You chose the right lifeline!''',
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
-                  FilledButton.icon(
-                    onPressed: _launchUrl,
-                    icon: const FaIcon(FontAwesomeIcons.whatsapp),
-                    label: const Text("Chat on Whatsapp"),
-                  ),
+                  // FilledButton.icon(
+                  //   onPressed: _launchUrl,
+                  //   icon: const FaIcon(FontAwesomeIcons.whatsapp),
+                  //   label: const Text("Chat on Whatsapp"),
+                  // ),
                   const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -123,8 +123,8 @@ class FAQ extends StatelessWidget {
   }
 }
 
-Future<void> _launchUrl() async {
-  if (!await launchUrl(_url)) {
-    throw Exception('Could not launch $_url');
-  }
-}
+// Future<void> _launchUrl() async {
+//   if (!await launchUrl(_url)) {
+//     throw Exception('Could not launch $_url');
+//   }
+// }

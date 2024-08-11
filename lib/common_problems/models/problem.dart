@@ -4,7 +4,7 @@ class ProblemProvider with ChangeNotifier {
 
   final List<Map> problemMap = [
     {
-      "problemName": "ESHAAAANN",
+      "problemName": "Symptom1",
       "problemImg": "assets/images/iga01.png",
       "problemSymptoms": [
         "Tilting",
@@ -17,7 +17,7 @@ class ProblemProvider with ChangeNotifier {
       ]
     },
     {
-    "problemName": "AMAAR",
+    "problemName": "Symptom2",
     "problemImg": "assets/images/iga02.png",
     "problemSymptoms": [
       "Holes in leaves",
